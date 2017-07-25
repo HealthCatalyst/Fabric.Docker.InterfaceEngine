@@ -1,12 +1,20 @@
 #!/bin/bash
 
+echo "starting mirth"
+
 /opt/mirthconnect/mcservice start
 
 echo "sleeping until mirth connect is running"
-until [ "`/opt/mirthconnect/mcservice status`"=="The daemon is running." ]; do sleep 1s; done;
+until [ "`/opt/mirthconnect/mcservice status`"=="The daemon is running." ]; do sleep 1s; echo "`/opt/mirthconnect/mcservice status`"; done;
+
+echo "finished sleeping since mirthconnect is running"
 
 while :; do
   for CACHE_FILE in $( find /tmp -maxdepth 1 -type f -name 'krb5cc*' ); do
+
+    echo "Processing file"
+    
+    echo "Processing $($CACHE_FILE)"
     # Find the current owner and group of the ticket cache
     OWNER=$( ls -n $CACHE_FILE | awk '{print $3}' )
     GROUP=$( ls -n $CACHE_FILE | awk '{print $4}' )
@@ -36,3 +44,5 @@ while :; do
   # Wait for a minute
   sleep 60
 done
+
+echo "finished running script"
