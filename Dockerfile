@@ -32,5 +32,7 @@ ADD conf/startmirthandrenewcredentials.sh /opt/mirthconnect/startmirthandrenewcr
 RUN dos2unix /opt/mirthconnect/startmirthandrenewcredentials.sh \
     && chmod +x /opt/mirthconnect/startmirthandrenewcredentials.sh
 
+EXPOSE 8080 8443
+
 # Start Mirth-Connect as a service
 ENTRYPOINT ["/opt/mirthconnect/startmirthandrenewcredentials.sh"]
