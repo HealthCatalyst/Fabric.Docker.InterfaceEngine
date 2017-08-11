@@ -27,6 +27,14 @@ RUN wget -O - https://download.microsoft.com/download/0/2/A/02AAE597-3865-456C-A
 && rm -rf sqljdbc_6.0 \
 ; sed -i '/<\/drivers>/ i\ \t<driver class="com.microsoft.sqlserver.jdbc.SQLServerDriver" name="MS SQL Server" template="jdbc:sqlserver://host:port;databaseName=dbname" selectLimit="SELECT TOP 1 * FROM ?" />' /opt/mirthconnect/conf/dbdrivers.xml
 
+# Install RabbitMQ Java Client
+RUN wget -O ampq-client.jar  http://central.maven.org/maven2/com/rabbitmq/amqp-client/4.0.2/amqp-client-4.0.2.jar \
+&& mv ampq-client.jar /opt/mirthconnect/custom-lib \
+&& wget -O slf4j-api.jar http://central.maven.org/maven2/org/slf4j/slf4j-api/1.7.21/slf4j-api-1.7.21.jar \
+&& mv slf4j-api.jar /opt/mirthconnect/custom-lib \
+&& wget -O slf4j-simple.jar http://central.maven.org/maven2/org/slf4j/slf4j-simple/1.7.22/slf4j-simple-1.7.22.jar \
+&& mv slf4j-simple.jar /opt/mirthconnect/custom-lib
+
 ADD conf/startmirthandrenewcredentials.sh /opt/mirthconnect/startmirthandrenewcredentials.sh
 
 RUN dos2unix /opt/mirthconnect/startmirthandrenewcredentials.sh \
