@@ -5,8 +5,7 @@ echo "starting mirth"
 /opt/mirthconnect/mcservice start
 
 echo "sleeping until mirth connect is running"
-until [ "`/opt/mirthconnect/mcservice status`"=="The daemon is running." ]; do sleep 1s; echo "`/opt/mirthconnect/mcservice status`"; d
-one;
+until [ "`/opt/mirthconnect/mcservice status`"=="The daemon is running." ]; do sleep 1s; echo "`/opt/mirthconnect/mcservice status`"; done;
 
 echo "finished sleeping since mirthconnect is running"
 
