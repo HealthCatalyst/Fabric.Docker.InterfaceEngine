@@ -9,7 +9,7 @@ RUN yum install -y wget krb5-libs krb5-workstation ntp rsync dos2unix; yum clean
 # RUN yum -y install java-1.8.0-openjdk; yum clean all
 
 RUN wget -O jdk.rpm --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" \
-http://download.oracle.com/otn-pub/java/jdk/8u141-b15/336fa29ff2bb4ef291e347e091f7f4a7/jdk-8u141-linux-x64.rpm \
+http://download.oracle.com/otn-pub/java/jdk/8u144-b01/090f390dda5b47b9b721c7dfaa008135/jdk-8u144-linux-x64.rpm \
 && yum install -y ./jdk.rpm \
 && yum clean all \
 && rm -f jdk.rpm
@@ -18,7 +18,7 @@ http://download.oracle.com/otn-pub/java/jdk/8u141-b15/336fa29ff2bb4ef291e347e091
 RUN wget -O mirthconnect.rpm http://downloads.mirthcorp.com/connect/3.4.2.8129.b167/mirthconnect-3.4.2.8129.b167-linux.rpm \
 && yum install -y mirthconnect.rpm \
 && yum clean all \
-&& rm -f mirthconnect.rpm 
+&& rm -f mirthconnect.rpm
 
 # Install Microsoft JDBC Driver
 RUN wget -O - https://download.microsoft.com/download/0/2/A/02AAE597-3865-456C-AE7F-613F99F850A8/enu/sqljdbc_6.0.8112.100_enu.tar.gz \
@@ -35,10 +35,16 @@ RUN wget -O ampq-client.jar  http://central.maven.org/maven2/com/rabbitmq/amqp-c
 && wget -O slf4j-simple.jar http://central.maven.org/maven2/org/slf4j/slf4j-simple/1.7.22/slf4j-simple-1.7.22.jar \
 && mv slf4j-simple.jar /opt/mirthconnect/custom-lib
 
-ADD conf/startmirthandrenewcredentials.sh /opt/mirthconnect/startmirthandrenewcredentials.sh
+ADD conf/scripts/* /opt/mirthconnect/
+
+ADD conf/appdata/* /opt/mirthconnect/appdata/
+
+ADD conf/channels/* /opt/mirthconnect_channels/
 
 RUN dos2unix /opt/mirthconnect/startmirthandrenewcredentials.sh \
-    && chmod +x /opt/mirthconnect/startmirthandrenewcredentials.sh
+    && chmod +x /opt/mirthconnect/startmirthandrenewcredentials.sh \
+    && dos2unix /opt/mirthconnect_channels/deployrealtimechannel.sh \
+    && chmod +x /opt/mirthconnect_channels/deployrealtimechannel.sh
 
 EXPOSE 8080 8443
 
