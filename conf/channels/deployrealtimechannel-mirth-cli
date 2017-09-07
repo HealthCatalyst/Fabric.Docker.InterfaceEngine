@@ -1,0 +1,2 @@
+import /opt/mirthconnect_channels/Realtime_HL7V2_Processor.xml
+channel deploy Realtime_HL7V2_Procesor
