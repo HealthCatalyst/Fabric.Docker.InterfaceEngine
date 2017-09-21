@@ -1,0 +1,5 @@
+-server
+-Xmx256m
+-Djava.awt.headless=true
+-Djava.security.auth.login.conf=/opt/mirthconnect/conf/SQLJDBCDriver.conf
+-Djava.security.krb5.conf=/etc/krb5.conf

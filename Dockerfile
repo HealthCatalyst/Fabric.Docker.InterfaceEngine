@@ -35,11 +35,13 @@ RUN wget -O ampq-client.jar  http://central.maven.org/maven2/com/rabbitmq/amqp-c
 && wget -O slf4j-simple.jar http://central.maven.org/maven2/org/slf4j/slf4j-simple/1.7.22/slf4j-simple-1.7.22.jar \
 && mv slf4j-simple.jar /opt/mirthconnect/custom-lib
 
-ADD conf/scripts/* /opt/mirthconnect/
+ADD conf/mirthconnect/* /opt/mirthconnect/
 
 ADD conf/appdata/* /opt/mirthconnect/appdata/
 
 ADD conf/channels/* /opt/mirthconnect_channels/
+
+ADD conf/database/* /opt/mirthconnect_database/
 
 RUN dos2unix /opt/mirthconnect/startmirthandrenewcredentials.sh \
     && chmod +x /opt/mirthconnect/startmirthandrenewcredentials.sh \
