@@ -11,6 +11,11 @@ db_hostname=$5
 db_port=$6
 db_catalog=$7
 
+if [[ -z "$db_catalog" ]]; then
+  echo "Usage: switchtosqlserver.sh username password domain kdc database port catalog"
+  exit 1
+fi
+
 # echo parameters
 echo "Username: $username"
 echo "Domain: $domain"
@@ -63,4 +68,4 @@ klist
 # test integrated security
 cd /opt/mirthconnect_database/
 javac KerberosAuthenticationTest.java
-java -cp ".:/opt/mirthconnect/custom-lib/sqljdbc42.jar" -Djava.security.auth.login.config=/opt/mirthconnect/conf/SQLJDBCDriver.conf -Djava.security.krb5.conf=/etc/krb5.conf /opt/mirthconnect_database/KerberosAuthenticationTest
+java -cp ".:/opt/mirthconnect/custom-lib/sqljdbc42.jar" -Djava.security.auth.login.config=/opt/mirthconnect/conf/SQLJDBCDriver.conf -Djava.security.krb5.conf=/etc/krb5.conf KerberosAuthenticationTest

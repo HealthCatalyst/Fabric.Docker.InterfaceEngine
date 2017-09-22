@@ -12,7 +12,6 @@ public class KerberosAuthenticationTest {
       Class.forName(JDBC_DRIVER);
       System.out.println("Connecting to database...");
       conn = DriverManager.getConnection(DB_URL);
-      System.out.println("Creating statement...");
       stmt = conn.createStatement();
       String sql;
       sql = "select auth_scheme from sys.dm_exec_connections where session_id=@@spid";
@@ -42,7 +41,7 @@ public class KerberosAuthenticationTest {
       }
     }
 
-    System.out.println("Bye DBExample.");
+    System.out.println("Disconnected from database.");
     
   }
 }
