@@ -33,10 +33,10 @@ This image has baked into it an XML file defining a simple Mirth Connect channel
 
 The AMQP-enabled client is powered by RabbitMQ's Java client library, which is also baked into this image. The four Configuration Map Keys have the following default values:
 
->QUEUE_EXCHANGE: "fabric.interfaceengine"
->QUEUE_HOST: "rabbitmq"
->QUEUE_PORT: 5672
->QUEUE_ROUTING_KEY: "mirth.connect.inbound"
+* QUEUE_EXCHANGE: "fabric.interfaceengine"
+* QUEUE_HOST: "rabbitmq"
+* QUEUE_PORT: 5672
+* QUEUE_ROUTING_KEY: "mirth.connect.inbound"
 
 To tailor the destination exchange to suit your environment, login to the Mirth Connect Administrator and alter the values in Mirth Connect > Settings > Configuration Map.
 
