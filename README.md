@@ -1,9 +1,16 @@
-# Fabric.Realtime.Docker.InterfaceEngine
+# Fabric.Docker.InterfaceEngine
 Docker for interface engine to use for realtime
 
 This image delivers Mirth Connect on CentOS and includes configurable scripts to switch Mirth Connect's internal database (Apache Derby) to an external SQL Server with trusted authentication using Microsoft's JDBC Client and Kerberos.
 
 This image also contains a simple HL7 V2 channel reader that parses common HL7 header information, transforms the message to XML and writes the entire payload to an AMQP-enabled message exchange.
+
+
+## Run Fabric.Docker.InterfaceEngine
+
+```
+docker run -d -p 8080:8080 -p 8443:8443 --name interfaceengine healthcatalyst/fabric.docker.interfaceengine
+```
 
 
 ## Switch Mirth Connect's Internal Database to an External SQL Server
