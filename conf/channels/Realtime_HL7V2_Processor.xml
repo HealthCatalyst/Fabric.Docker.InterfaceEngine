@@ -5,10 +5,10 @@
   <description></description>
   <enabled>true</enabled>
   <lastModified>
-    <time>1504299552456</time>
+    <time>1506118761570</time>
     <timezone>America/Denver</timezone>
   </lastModified>
-  <revision>8</revision>
+  <revision>4</revision>
   <sourceConnector version="3.4.2">
     <metaDataId>0</metaDataId>
     <name>sourceConnector</name>
@@ -531,13 +531,14 @@ NjVeOTl8THx8fEZ8fHwyMDA2MTEyMjE1NDczM3w=</inboundTemplate>
 	XmlMessage: connectorMessage.getEncodedData() };
 
 var factory = new Packages.com.rabbitmq.client.ConnectionFactory();
-factory.setHost($(&apos;QUEUE_HOST&apos;));
+factory.setHost($(&apos;AMQP_HOST&apos;));
+factory.setPort(parseInt($(&apos;AMQP_PORT&apos;)));
 var connection = factory.newConnection();
 var channel = connection.createChannel();
-channel.exchangeDeclare($(&apos;QUEUE_EXCHANGE&apos;), &quot;direct&quot;);
+channel.exchangeDeclare($(&apos;AMQP_EXCHANGE&apos;), &quot;direct&quot;);
 
-channel.basicPublish($(&apos;QUEUE_EXCHANGE&apos;), 
-	$(&apos;QUEUE_ROUTING_KEY&apos;), 
+channel.basicPublish($(&apos;AMQP_EXCHANGE&apos;), 
+	$(&apos;AMQP_ROUTING_KEY&apos;), 
 	Packages.com.rabbitmq.client.MessageProperties.PERSISTENT_TEXT_PLAIN, 
 	JsonUtil.prettyPrint(JSON.stringify(messagePayload)).getBytes());</script>
       </properties>
