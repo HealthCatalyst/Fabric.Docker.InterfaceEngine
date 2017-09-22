@@ -46,7 +46,9 @@ ADD conf/database/* /opt/mirthconnect_database/
 RUN dos2unix /opt/mirthconnect/startmirthandrenewcredentials.sh \
     && chmod +x /opt/mirthconnect/startmirthandrenewcredentials.sh \
     && dos2unix /opt/mirthconnect_channels/deployrealtimechannel.sh \
-    && chmod +x /opt/mirthconnect_channels/deployrealtimechannel.sh
+    && chmod +x /opt/mirthconnect_channels/deployrealtimechannel.sh \
+	&& dos2unix /opt/mirthconnect_database/switchtosqlserver.sh \
+	&& chmod +x /opt/mirthconnect_database/switchtosqlserver.sh
 
 EXPOSE 8080 8443
 
