@@ -1,0 +1,2 @@
+import /opt/mirthconnect_channels/TCP_Receiver_Channel.xml
+channel deploy TCP_Receiver_Channel

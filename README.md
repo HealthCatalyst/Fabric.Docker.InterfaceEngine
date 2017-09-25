@@ -9,7 +9,7 @@ This image also contains a simple HL7 V2 channel reader that parses common HL7 h
 ## Run Fabric.Docker.InterfaceEngine
 
 ```
-docker run -d -p 8080:8080 -p 8443:8443 --name interfaceengine healthcatalyst/fabric.docker.interfaceengine
+docker run -d -p 8080:8080 -p 8443:8443 -p 6661:6661 --name interfaceengine healthcatalyst/fabric.docker.interfaceengine
 ```
 
 

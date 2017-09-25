@@ -50,7 +50,7 @@ RUN dos2unix /opt/mirthconnect/startmirthandrenewcredentials.sh \
 	&& dos2unix /opt/mirthconnect_database/switchtosqlserver.sh \
 	&& chmod +x /opt/mirthconnect_database/switchtosqlserver.sh
 
-EXPOSE 8080 8443
+EXPOSE 8080 8443 6661
 
 # Start Mirth-Connect as a service
 ENTRYPOINT ["/opt/mirthconnect/startmirthandrenewcredentials.sh"]
