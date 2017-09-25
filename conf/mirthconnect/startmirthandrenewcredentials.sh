@@ -9,6 +9,38 @@ until [ "`/opt/mirthconnect/mcservice status`"=="The daemon is running." ]; do s
 
 echo "finished sleeping since mirthconnect is running"
 
+echo "==== calling web admin interface to see if it is up ===="
+
+declare -i c=0
+c=0
+protocol="https"
+
+# disable set -e so the script does not break when there is an error with curl
+set +e
+
+while [ $c -lt 60 ]; do
+    echo "curl -X GET $protocol://localhost:8443"
+    curl -X GET $protocol://localhost:8443 -k
+    RETVAL=$?
+    echo "RETVAL:[$RETVAL]"
+    if [ $RETVAL -eq 0 ]; then 
+      break 
+    fi    
+    c=$c+1
+    echo "Trying again [$c]"
+    sleep 1s
+done
+
+set -e
+
+# echo "sleeping for 60s before setting up channels"
+# sleep 60s;
+
+echo "setting up channels"
+/opt/mirthconnect_channels/deployrealtimechannel.sh
+
+echo "done setting up channels"
+
 while :; do
   for CACHE_FILE in $( find /tmp -maxdepth 1 -type f -name 'krb5cc*' ); do
 
@@ -46,3 +78,4 @@ while :; do
 done
 
 echo "finished running script"
+
