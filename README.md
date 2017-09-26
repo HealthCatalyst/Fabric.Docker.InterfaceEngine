@@ -15,10 +15,10 @@ docker run -d -p 8080:8080 -p 8443:8443 -p 6661:6661 --name interfaceengine heal
 
 ## Switch Mirth Connect's Internal Database to an External SQL Server
 
-To switch Mirth Connect's internal database to an external SQL Server using integrated security, the interface engine must be running on a docker host whose time is in sync with an Active Directory domain controller. To switch, execute the following script with the seven required parameters:
+To switch Mirth Connect's internal database to an external SQL Server using integrated security, the interface engine must be running on a docker host whose time is in sync with an Active Directory domain controller. In addition, the db_catalog must already be created on the db_host. And the user must have permissions to read, write, and administer ddl on that db_catalog. To switch, execute the following script with the seven required parameters:
 
 ```
-$ docker exec [container_id | container_name] /opt/mirthconnect_database/switchtosqlserver.sh $user $password $fqdn $kdc_hostname $db_hostname $db_port $db_catalog
+$ docker exec [container_id | container_name] /opt/mirthconnect_database/switchtosqlserver.sh $user(lowercase) $password $fqdn $kdc_hostname $db_hostname $db_port $db_catalog
 ```
 
 If kerberos authentication is successful, the output will include the following three lines:
