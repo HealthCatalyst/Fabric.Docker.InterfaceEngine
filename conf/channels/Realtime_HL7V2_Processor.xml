@@ -5,10 +5,10 @@
   <description></description>
   <enabled>true</enabled>
   <lastModified>
-    <time>1506638294857</time>
+    <time>1506642678248</time>
     <timezone>America/Denver</timezone>
   </lastModified>
-  <revision>10</revision>
+  <revision>24</revision>
   <sourceConnector version="3.4.2">
     <metaDataId>0</metaDataId>
     <name>sourceConnector</name>
@@ -514,7 +514,8 @@ NjVeOTl8THx8fEZ8fHwyMDA2MTEyMjE1NDczM3w=</inboundTemplate>
           </resourceIds>
           <queueBufferSize>1000</queueBufferSize>
         </destinationConnectorProperties>
-        <script>var messagePayload = { 
+        <script>var ts = java.time.Instant.now().toString();
+var messagePayload = { 
 	Protocol:  $(&apos;Protocol&apos;), 
 	Version: $(&apos;Version&apos;),
 	SendingApplication: $(&apos;SendingApplication&apos;),
@@ -525,8 +526,7 @@ NjVeOTl8THx8fEZ8fHwyMDA2MTEyMjE1NDczM3w=</inboundTemplate>
 	MessageType: $(&apos;MessageType&apos;), 
 	MessageEvent: $(&apos;MessageEvent&apos;), 
 	MessageHash: $(&apos;MessageHash&apos;), 
-	TransmissionReceiptTimeInMillis: $(&apos;TransmissionReceiptTimeInMillis&apos;),
-	Filename: $(&apos;originalFilename&apos;), 
+	TransmissionReceiptTime: ts,
 	RawMessage: connectorMessage.getRawData(), 
 	XmlMessage: connectorMessage.getEncodedData() };
 
@@ -545,6 +545,8 @@ channel.basicPublish($(&apos;AMQP_EXCHANGE_NAME&apos;),
       </properties>
       <transformer version="3.4.2">
         <steps/>
+        <inboundTemplate encoding="base64"></inboundTemplate>
+        <outboundTemplate encoding="base64"></outboundTemplate>
         <inboundDataType>HL7V2</inboundDataType>
         <outboundDataType>XML</outboundDataType>
         <inboundProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties" version="3.4.2">
