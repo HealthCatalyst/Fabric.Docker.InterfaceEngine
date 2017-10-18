@@ -15,7 +15,7 @@ http://download.oracle.com/otn-pub/java/jdk/8u144-b01/090f390dda5b47b9b721c7dfaa
 && rm -f jdk.rpm
 
 # Install Mirth-Connect
-RUN wget -O mirthconnect.rpm http://downloads.mirthcorp.com/connect/3.4.2.8129.b167/mirthconnect-3.4.2.8129.b167-linux.rpm \
+RUN wget -O mirthconnect.rpm http://downloads.mirthcorp.com/connect/3.5.1.b194/mirthconnect-3.5.1.b194-linux.rpm \
 && yum install -y mirthconnect.rpm \
 && yum clean all \
 && rm -f mirthconnect.rpm
