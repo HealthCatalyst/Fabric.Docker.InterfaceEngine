@@ -1,6 +1,7 @@
 FROM centos:centos7
 
-MAINTAINER Health Catalyst <marshall.pettit@healthcatalyst.com>
+LABEL maintainer="Health Catalyst"
+LABEL version="1.0"
 
 # Install required packages
 RUN yum install -y wget krb5-libs krb5-workstation ntp rsync dos2unix; yum clean all
@@ -9,7 +10,7 @@ RUN yum install -y wget krb5-libs krb5-workstation ntp rsync dos2unix; yum clean
 # RUN yum -y install java-1.8.0-openjdk; yum clean all
 
 RUN wget -O jdk.rpm --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" \
-http://download.oracle.com/otn-pub/java/jdk/8u144-b01/090f390dda5b47b9b721c7dfaa008135/jdk-8u144-linux-x64.rpm \
+http://javadl.oracle.com/webapps/download/AutoDL?BundleId=227541_e758a0de34e24606bca991d704f6dcbf \
 && yum install -y ./jdk.rpm \
 && yum clean all \
 && rm -f jdk.rpm
