@@ -533,6 +533,8 @@ var messagePayload = {
 var factory = new Packages.com.rabbitmq.client.ConnectionFactory();
 factory.setHost($(&apos;AMQP_HOST&apos;));
 factory.setPort(parseInt($(&apos;AMQP_PORT&apos;)));
+factory.setUsername($(&apos;AMQP_USERNAME&apos;));
+factory.setPassword($(&apos;AMQP_USERPASSWORD&apos;));
 var connection = factory.newConnection();
 var channel = connection.createChannel();
 channel.exchangeDeclare($(&apos;AMQP_EXCHANGE_NAME&apos;), $(&apos;AMQP_EXCHANGE_TYPE&apos;), true);
