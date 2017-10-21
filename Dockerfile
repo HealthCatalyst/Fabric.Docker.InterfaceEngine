@@ -44,6 +44,8 @@ ADD conf/channels/* /opt/mirthconnect_channels/
 
 ADD conf/database/* /opt/mirthconnect_database/
 
+ADD conf/mysql/* /opt/mirthconnect_mysql/
+
 RUN dos2unix /opt/mirthconnect/startmirthandrenewcredentials.sh \
     && chmod +x /opt/mirthconnect/startmirthandrenewcredentials.sh \
     && dos2unix /opt/mirthconnect_channels/deployrealtimechannel.sh \
