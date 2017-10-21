@@ -2,13 +2,17 @@
 
 echo "switching to use MySql"
 
+mirthdb=${MYSQL_DATABASE:-mirthdb}
+mysqlport=${MYSQL_PORT:-3306}
+
+echo "checking if mysql server is available"
+
+wait-for-it mysqlserver:$mysqlport -t 60
+
 # https://stackoverflow.com/questions/5955548/how-do-i-use-sed-to-change-my-configuration-files-with-flexible-keys-and-values
 
 replaceconfig "database" "mysql" /opt/mirthconnect/conf/mirth.properties
 # sed -i "s/^\(database\s*=\).*\$/\1 mysql/" /opt/mirthconnect/conf/mirth.properties
-
-mirthdb=${MYSQL_DATABASE:-mirthdb}
-mysqlport=${MYSQL_PORT:-3306}
 
 replaceconfig "database.url" "jdbc\:mysql\:\/\/mysqlserver\:$mysqlport/$mirthdb" /opt/mirthconnect/conf/mirth.properties
 # sed -i "s#^\(database.url\s*=*\).*\$#\1 jdbc\:mysql\:\/\/mysqlserver\:3306/mirthdb#" 
