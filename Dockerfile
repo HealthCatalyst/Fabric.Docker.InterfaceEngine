@@ -1,4 +1,4 @@
-FROM centos:centos7
+FROM healthcatalyst/fabric.baseos:latest
 
 LABEL maintainer="Health Catalyst"
 LABEL version="1.0"
@@ -46,14 +46,20 @@ ADD conf/database/* /opt/mirthconnect_database/
 
 ADD conf/mysql/* /opt/mirthconnect_mysql/
 
+ADD docker-entrypoint.sh ./docker-entrypoint.sh
+
 RUN dos2unix /opt/mirthconnect/startmirthandrenewcredentials.sh \
     && chmod +x /opt/mirthconnect/startmirthandrenewcredentials.sh \
     && dos2unix /opt/mirthconnect_channels/deployrealtimechannel.sh \
     && chmod +x /opt/mirthconnect_channels/deployrealtimechannel.sh \
 	&& dos2unix /opt/mirthconnect_database/switchtosqlserver.sh \
-	&& chmod +x /opt/mirthconnect_database/switchtosqlserver.sh
+	&& chmod +x /opt/mirthconnect_database/switchtosqlserver.sh \
+	&& dos2unix /opt/mirthconnect_mysql/* \
+	&& chmod +x /opt/mirthconnect_mysql/* \
+	&& dos2unix ./docker-entrypoint.sh \
+	&& chmod +x ./docker-entrypoint.sh 
 
 EXPOSE 8080 8443 6661
 
 # Start Mirth-Connect as a service
-ENTRYPOINT ["/opt/mirthconnect/startmirthandrenewcredentials.sh"]
+ENTRYPOINT [ "./docker-entrypoint.sh" ]

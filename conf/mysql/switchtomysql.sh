@@ -4,15 +4,21 @@ echo "switching to use MySql"
 
 # https://stackoverflow.com/questions/5955548/how-do-i-use-sed-to-change-my-configuration-files-with-flexible-keys-and-values
 
-sed -i "s/^\(database\s*=\s*\).*\$/\1mysql/" /opt/mirthconnect/conf/mirth.properties
+replaceconfig "database" "mysql" /opt/mirthconnect/conf/mirth.properties
+# sed -i "s/^\(database\s*=\).*\$/\1 mysql/" /opt/mirthconnect/conf/mirth.properties
 
-mysqlurl="jdbc:mysql://localhost:3306/mirthdb"
-sed -i "s/^\(database.url\s*=\s*\).*\$/\1$mysqlurl/" /opt/mirthconnect/conf/mirth.properties
+mirthdb=${MYSQL_DATABASE:-mirthdb}
+mysqlport=${MYSQL_PORT:-3306}
 
-mysqlusername=$MYSQL_USERNAME
+replaceconfig "database.url" "jdbc\:mysql\:\/\/mysqlserver\:$mysqlport/$mirthdb" /opt/mirthconnect/conf/mirth.properties
+# sed -i "s#^\(database.url\s*=*\).*\$#\1 jdbc\:mysql\:\/\/mysqlserver\:3306/mirthdb#" 
+
+mysqlusername=$MYSQL_USER
 mysqlpassword=$MYSQL_PASSWORD
-sed -i "s/^\(database.username\s*=\s*\).*\$/\1$mysqlusername/" /opt/mirthconnect/conf/mirth.properties
-sed -i "s/^\(database.password\s*=\s*\).*\$/\1$mysqlpassword/" /opt/mirthconnect/conf/mirth.properties
+replaceconfig "database.username" "$mysqlusername" /opt/mirthconnect/conf/mirth.properties
+replaceconfig "database.password" "$mysqlpassword" /opt/mirthconnect/conf/mirth.properties
 
+# sed -i "s#^\(database.username\s*=\).*\$#\1 $mysqlusername#" /opt/mirthconnect/conf/mirth.properties
+# sed -i "s#^\(database.password\s*=\).*\$#\1 $mysqlpassword#" /opt/mirthconnect/conf/mirth.properties
 
-echo "finished updating the config"
+echo "finished updating the config: mirth.properties"
