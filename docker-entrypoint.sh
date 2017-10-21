@@ -8,4 +8,6 @@ if [[ ! -z "${MYSQL_USER:-}" ]]; then
     /opt/mirthconnect_mysql/switchtomysql.sh
 fi
 
-exec /opt/mirthconnect/startmirthandrenewcredentials.sh
+/opt/mirthconnect/startmirthandrenewcredentials.sh
+
+exec "$@"

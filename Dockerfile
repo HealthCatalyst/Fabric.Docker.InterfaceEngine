@@ -3,6 +3,8 @@ FROM healthcatalyst/fabric.baseos:latest
 LABEL maintainer="Health Catalyst"
 LABEL version="1.0"
 
+ENV MIRTH_CONNECT_VERSION 3.5.1.b194
+
 # Install required packages
 RUN yum install -y wget krb5-libs krb5-workstation ntp rsync dos2unix; yum clean all
 
@@ -16,7 +18,7 @@ http://javadl.oracle.com/webapps/download/AutoDL?BundleId=227541_e758a0de34e2460
 && rm -f jdk.rpm
 
 # Install Mirth-Connect
-RUN wget -O mirthconnect.rpm http://downloads.mirthcorp.com/connect/3.5.1.b194/mirthconnect-3.5.1.b194-linux.rpm \
+RUN wget -O mirthconnect.rpm http://downloads.mirthcorp.com/connect/$MIRTH_CONNECT_VERSION/mirthconnect-$MIRTH_CONNECT_VERSION-linux.rpm \
 && yum install -y mirthconnect.rpm \
 && yum clean all \
 && rm -f mirthconnect.rpm
@@ -63,3 +65,5 @@ EXPOSE 8080 8443 6661
 
 # Start Mirth-Connect as a service
 ENTRYPOINT [ "./docker-entrypoint.sh" ]
+
+CMD ["/opt/mirthconnect/mcservice", "run"]
