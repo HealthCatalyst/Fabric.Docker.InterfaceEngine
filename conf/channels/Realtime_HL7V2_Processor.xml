@@ -1,20 +1,15 @@
-<channel version="3.4.2">
+<channel version="3.5.1">
   <id>8fe0c026-5236-467b-bde4-df5970ec9b9b</id>
   <nextMetaDataId>3</nextMetaDataId>
   <name>Realtime_HL7V2_Processor</name>
   <description></description>
-  <enabled>true</enabled>
-  <lastModified>
-    <time>1506642678248</time>
-    <timezone>America/Denver</timezone>
-  </lastModified>
-  <revision>24</revision>
-  <sourceConnector version="3.4.2">
+  <revision>1</revision>
+  <sourceConnector version="3.5.1">
     <metaDataId>0</metaDataId>
     <name>sourceConnector</name>
-    <properties class="com.mirth.connect.connectors.vm.VmReceiverProperties" version="3.4.2">
+    <properties class="com.mirth.connect.connectors.vm.VmReceiverProperties" version="3.5.1">
       <pluginProperties/>
-      <sourceConnectorProperties version="3.4.2">
+      <sourceConnectorProperties version="3.5.1">
         <responseVariable>d1</responseVariable>
         <respondAfterProcessing>true</respondAfterProcessing>
         <processBatch>false</processBatch>
@@ -29,368 +24,101 @@
         <queueBufferSize>1000</queueBufferSize>
       </sourceConnectorProperties>
     </properties>
-    <transformer version="3.4.2">
-      <steps>
-        <step>
-          <sequenceNumber>0</sequenceNumber>
+    <transformer version="3.5.1">
+      <elements>
+        <com.mirth.connect.plugins.mapper.MapperStep>
           <name>Protocol</name>
-          <script>var mapping;
-
-try {
-	mapping = &quot;HL7&quot;; 
-} catch (e) {
-	logger.error(e);
-	mapping = &apos;&apos;;
-}
-
-channelMap.put(&apos;Protocol&apos;, validate( mapping , &apos;&apos;, new Array()));</script>
-          <type>Mapper</type>
-          <data>
-            <entry>
-              <string>Variable</string>
-              <string>Protocol</string>
-            </entry>
-            <entry>
-              <string>Mapping</string>
-              <string>&quot;HL7&quot;</string>
-            </entry>
-            <entry>
-              <string>DefaultValue</string>
-              <string></string>
-            </entry>
-            <entry>
-              <string>RegularExpressions</string>
-              <list/>
-            </entry>
-            <entry>
-              <string>isGlobal</string>
-              <string>channel</string>
-            </entry>
-          </data>
-        </step>
-        <step>
-          <sequenceNumber>1</sequenceNumber>
+          <sequenceNumber>0</sequenceNumber>
+          <variable>Protocol</variable>
+          <mapping>&quot;HL7&quot;</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
           <name>Version</name>
-          <script>var mapping;
-
-try {
-	mapping = msg[&apos;MSH&apos;][&apos;MSH.12&apos;][&apos;MSH.12.1&apos;].toString(); 
-} catch (e) {
-	logger.error(e);
-	mapping = &apos;&apos;;
-}
-
-channelMap.put(&apos;Version&apos;, validate( mapping , &apos;&apos;, new Array()));</script>
-          <type>Mapper</type>
-          <data>
-            <entry>
-              <string>Variable</string>
-              <string>Version</string>
-            </entry>
-            <entry>
-              <string>Mapping</string>
-              <string>msg[&apos;MSH&apos;][&apos;MSH.12&apos;][&apos;MSH.12.1&apos;].toString()</string>
-            </entry>
-            <entry>
-              <string>DefaultValue</string>
-              <string></string>
-            </entry>
-            <entry>
-              <string>RegularExpressions</string>
-              <list/>
-            </entry>
-            <entry>
-              <string>isGlobal</string>
-              <string>channel</string>
-            </entry>
-          </data>
-        </step>
-        <step>
-          <sequenceNumber>2</sequenceNumber>
+          <sequenceNumber>1</sequenceNumber>
+          <variable>Version</variable>
+          <mapping>msg[&apos;MSH&apos;][&apos;MSH.12&apos;][&apos;MSH.12.1&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
           <name>SendingApplication</name>
-          <script>var mapping;
-
-try {
-	mapping = msg[&apos;MSH&apos;][&apos;MSH.3&apos;][&apos;MSH.3.1&apos;].toString(); 
-} catch (e) {
-	logger.error(e);
-	mapping = &apos;&apos;;
-}
-
-channelMap.put(&apos;SendingApplication&apos;, validate( mapping , &apos;&apos;, new Array()));</script>
-          <type>Mapper</type>
-          <data>
-            <entry>
-              <string>Variable</string>
-              <string>SendingApplication</string>
-            </entry>
-            <entry>
-              <string>Mapping</string>
-              <string>msg[&apos;MSH&apos;][&apos;MSH.3&apos;][&apos;MSH.3.1&apos;].toString()</string>
-            </entry>
-            <entry>
-              <string>DefaultValue</string>
-              <string></string>
-            </entry>
-            <entry>
-              <string>RegularExpressions</string>
-              <list/>
-            </entry>
-            <entry>
-              <string>isGlobal</string>
-              <string>channel</string>
-            </entry>
-          </data>
-        </step>
-        <step>
-          <sequenceNumber>3</sequenceNumber>
+          <sequenceNumber>2</sequenceNumber>
+          <variable>SendingApplication</variable>
+          <mapping>msg[&apos;MSH&apos;][&apos;MSH.3&apos;][&apos;MSH.3.1&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
           <name>ReceivingApplication</name>
-          <script>var mapping;
-
-try {
-	mapping = msg[&apos;MSH&apos;][&apos;MSH.5&apos;][&apos;MSH.5.1&apos;].toString(); 
-} catch (e) {
-	logger.error(e);
-	mapping = &apos;&apos;;
-}
-
-channelMap.put(&apos;ReceivingApplication&apos;, validate( mapping , &apos;&apos;, new Array()));</script>
-          <type>Mapper</type>
-          <data>
-            <entry>
-              <string>Variable</string>
-              <string>ReceivingApplication</string>
-            </entry>
-            <entry>
-              <string>Mapping</string>
-              <string>msg[&apos;MSH&apos;][&apos;MSH.5&apos;][&apos;MSH.5.1&apos;].toString()</string>
-            </entry>
-            <entry>
-              <string>DefaultValue</string>
-              <string></string>
-            </entry>
-            <entry>
-              <string>RegularExpressions</string>
-              <list/>
-            </entry>
-            <entry>
-              <string>isGlobal</string>
-              <string>channel</string>
-            </entry>
-          </data>
-        </step>
-        <step>
-          <sequenceNumber>4</sequenceNumber>
+          <sequenceNumber>3</sequenceNumber>
+          <variable>ReceivingApplication</variable>
+          <mapping>msg[&apos;MSH&apos;][&apos;MSH.5&apos;][&apos;MSH.5.1&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
           <name>InternalPatientID</name>
-          <script>var mapping;
-
-try {
-	mapping = msg[&apos;PID&apos;][&apos;PID.3&apos;][&apos;PID.3.1&apos;].toString(); 
-} catch (e) {
-	logger.error(e);
-	mapping = &apos;&apos;;
-}
-
-channelMap.put(&apos;InternalPatientID&apos;, validate( mapping , &apos;&apos;, new Array()));</script>
-          <type>Mapper</type>
-          <data>
-            <entry>
-              <string>Variable</string>
-              <string>InternalPatientID</string>
-            </entry>
-            <entry>
-              <string>Mapping</string>
-              <string>msg[&apos;PID&apos;][&apos;PID.3&apos;][&apos;PID.3.1&apos;].toString()</string>
-            </entry>
-            <entry>
-              <string>DefaultValue</string>
-              <string></string>
-            </entry>
-            <entry>
-              <string>RegularExpressions</string>
-              <list/>
-            </entry>
-            <entry>
-              <string>isGlobal</string>
-              <string>channel</string>
-            </entry>
-          </data>
-        </step>
-        <step>
-          <sequenceNumber>5</sequenceNumber>
+          <sequenceNumber>4</sequenceNumber>
+          <variable>InternalPatientID</variable>
+          <mapping>msg[&apos;PID&apos;][&apos;PID.3&apos;][&apos;PID.3.1&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
           <name>ExternalPatientID</name>
-          <script>var mapping;
-
-try {
-	mapping = msg[&apos;PID&apos;][&apos;PID.2&apos;][&apos;PID.2.1&apos;].toString(); 
-} catch (e) {
-	logger.error(e);
-	mapping = &apos;&apos;;
-}
-
-channelMap.put(&apos;ExternalPatientID&apos;, validate( mapping , &apos;&apos;, new Array()));</script>
-          <type>Mapper</type>
-          <data>
-            <entry>
-              <string>Variable</string>
-              <string>ExternalPatientID</string>
-            </entry>
-            <entry>
-              <string>Mapping</string>
-              <string>msg[&apos;PID&apos;][&apos;PID.2&apos;][&apos;PID.2.1&apos;].toString()</string>
-            </entry>
-            <entry>
-              <string>DefaultValue</string>
-              <string></string>
-            </entry>
-            <entry>
-              <string>RegularExpressions</string>
-              <list/>
-            </entry>
-            <entry>
-              <string>isGlobal</string>
-              <string>channel</string>
-            </entry>
-          </data>
-        </step>
-        <step>
-          <sequenceNumber>6</sequenceNumber>
+          <sequenceNumber>5</sequenceNumber>
+          <variable>ExternalPatientID</variable>
+          <mapping>msg[&apos;PID&apos;][&apos;PID.2&apos;][&apos;PID.2.1&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
           <name>MessageDate</name>
-          <script>var mapping;
-
-try {
-	mapping = msg[&apos;MSH&apos;][&apos;MSH.7&apos;][&apos;MSH.7.1&apos;].toString(); 
-} catch (e) {
-	logger.error(e);
-	mapping = &apos;&apos;;
-}
-
-channelMap.put(&apos;MessageDate&apos;, validate( mapping , &apos;&apos;, new Array()));</script>
-          <type>Mapper</type>
-          <data>
-            <entry>
-              <string>Variable</string>
-              <string>MessageDate</string>
-            </entry>
-            <entry>
-              <string>Mapping</string>
-              <string>msg[&apos;MSH&apos;][&apos;MSH.7&apos;][&apos;MSH.7.1&apos;].toString()</string>
-            </entry>
-            <entry>
-              <string>DefaultValue</string>
-              <string></string>
-            </entry>
-            <entry>
-              <string>RegularExpressions</string>
-              <list/>
-            </entry>
-            <entry>
-              <string>isGlobal</string>
-              <string>channel</string>
-            </entry>
-          </data>
-        </step>
-        <step>
-          <sequenceNumber>7</sequenceNumber>
+          <sequenceNumber>6</sequenceNumber>
+          <variable>MessageDate</variable>
+          <mapping>msg[&apos;MSH&apos;][&apos;MSH.7&apos;][&apos;MSH.7.1&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
           <name>MessageType</name>
-          <script>var mapping;
-
-try {
-	mapping = msg[&apos;MSH&apos;][&apos;MSH.9&apos;][&apos;MSH.9.1&apos;].toString(); 
-} catch (e) {
-	logger.error(e);
-	mapping = &apos;&apos;;
-}
-
-channelMap.put(&apos;MessageType&apos;, validate( mapping , &apos;&apos;, new Array()));</script>
-          <type>Mapper</type>
-          <data>
-            <entry>
-              <string>Variable</string>
-              <string>MessageType</string>
-            </entry>
-            <entry>
-              <string>Mapping</string>
-              <string>msg[&apos;MSH&apos;][&apos;MSH.9&apos;][&apos;MSH.9.1&apos;].toString()</string>
-            </entry>
-            <entry>
-              <string>DefaultValue</string>
-              <string></string>
-            </entry>
-            <entry>
-              <string>RegularExpressions</string>
-              <list/>
-            </entry>
-            <entry>
-              <string>isGlobal</string>
-              <string>channel</string>
-            </entry>
-          </data>
-        </step>
-        <step>
-          <sequenceNumber>8</sequenceNumber>
+          <sequenceNumber>7</sequenceNumber>
+          <variable>MessageType</variable>
+          <mapping>msg[&apos;MSH&apos;][&apos;MSH.9&apos;][&apos;MSH.9.1&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
           <name>MessageEvent</name>
-          <script>var mapping;
-
-try {
-	mapping = msg[&apos;MSH&apos;][&apos;MSH.9&apos;][&apos;MSH.9.2&apos;].toString(); 
-} catch (e) {
-	logger.error(e);
-	mapping = &apos;&apos;;
-}
-
-channelMap.put(&apos;MessageEvent&apos;, validate( mapping , &apos;&apos;, new Array()));</script>
-          <type>Mapper</type>
-          <data>
-            <entry>
-              <string>Variable</string>
-              <string>MessageEvent</string>
-            </entry>
-            <entry>
-              <string>Mapping</string>
-              <string>msg[&apos;MSH&apos;][&apos;MSH.9&apos;][&apos;MSH.9.2&apos;].toString()</string>
-            </entry>
-            <entry>
-              <string>DefaultValue</string>
-              <string></string>
-            </entry>
-            <entry>
-              <string>RegularExpressions</string>
-              <list/>
-            </entry>
-            <entry>
-              <string>isGlobal</string>
-              <string>channel</string>
-            </entry>
-          </data>
-        </step>
-        <step>
-          <sequenceNumber>9</sequenceNumber>
+          <sequenceNumber>8</sequenceNumber>
+          <variable>MessageEvent</variable>
+          <mapping>msg[&apos;MSH&apos;][&apos;MSH.9&apos;][&apos;MSH.9.2&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
           <name>MessageHash</name>
+          <sequenceNumber>9</sequenceNumber>
           <script>channelMap.put(&apos;MessageHash&apos;,
 com.google.common.hash.Hashing.sha256().hashString(connectorMessage.getRawData(), java.nio.charset.Charset.forName(&quot;US-ASCII&quot;)).toString());</script>
-          <type>JavaScript</type>
-          <data>
-            <entry>
-              <string>Script</string>
-              <string>channelMap.put(&apos;MessageHash&apos;,
-com.google.common.hash.Hashing.sha256().hashString(connectorMessage.getRawData(), java.nio.charset.Charset.forName(&quot;US-ASCII&quot;)).toString());</string>
-            </entry>
-          </data>
-        </step>
-        <step>
-          <sequenceNumber>10</sequenceNumber>
+        </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+        <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
           <name>TransmissionReceiptTime</name>
+          <sequenceNumber>10</sequenceNumber>
           <script>channelMap.put(&apos;TransmissionReceiptTimeInMillis&apos;, Date.now());</script>
-          <type>JavaScript</type>
-          <data>
-            <entry>
-              <string>Script</string>
-              <string>channelMap.put(&apos;TransmissionReceiptTimeInMillis&apos;, Date.now());</string>
-            </entry>
-          </data>
-        </step>
-      </steps>
+        </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+      </elements>
       <inboundTemplate encoding="base64">TVNIfF5+XCZ8Q0VSTkVSfHxQcmlvcml0eUhlYWx0aHx8fHxPUlVeUjAxfFE0NzkwMDQzNzVUNDMx
 NDMwNjEyfFB8Mi4zfApQSUR8fHwwMDE2Nzc5ODB8fFNNSVRIXkNVUlRJU3x8MTk2ODAyMTl8TXx8
 fHx8fHx8fHw5Mjk2NDUxNTYzMTh8MTIzNDU2Nzg5fApQRDF8fHx8MTIzNDU2Nzg5MF5MQVNUXkZJ
@@ -402,8 +130,8 @@ NjVeOTl8THx8fEZ8fHwyMDA2MTEyMjE1NDczM3w=</inboundTemplate>
       <outboundTemplate encoding="base64"></outboundTemplate>
       <inboundDataType>HL7V2</inboundDataType>
       <outboundDataType>HL7V2</outboundDataType>
-      <inboundProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties" version="3.4.2">
-        <serializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties" version="3.4.2">
+      <inboundProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties" version="3.5.1">
+        <serializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties" version="3.5.1">
           <handleRepetitions>true</handleRepetitions>
           <handleSubcomponents>true</handleSubcomponents>
           <useStrictParser>false</useStrictParser>
@@ -412,16 +140,16 @@ NjVeOTl8THx8fEZ8fHwyMDA2MTEyMjE1NDczM3w=</inboundTemplate>
           <segmentDelimiter>\r</segmentDelimiter>
           <convertLineBreaks>true</convertLineBreaks>
         </serializationProperties>
-        <deserializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties" version="3.4.2">
+        <deserializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties" version="3.5.1">
           <useStrictParser>false</useStrictParser>
           <useStrictValidation>false</useStrictValidation>
           <segmentDelimiter>\r</segmentDelimiter>
         </deserializationProperties>
-        <batchProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2BatchProperties" version="3.4.2">
+        <batchProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2BatchProperties" version="3.5.1">
           <splitType>MSH_Segment</splitType>
           <batchScript></batchScript>
         </batchProperties>
-        <responseGenerationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseGenerationProperties" version="3.4.2">
+        <responseGenerationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseGenerationProperties" version="3.5.1">
           <segmentDelimiter>\r</segmentDelimiter>
           <successfulACKCode>AA</successfulACKCode>
           <successfulACKMessage></successfulACKMessage>
@@ -432,7 +160,7 @@ NjVeOTl8THx8fEZ8fHwyMDA2MTEyMjE1NDczM3w=</inboundTemplate>
           <msh15ACKAccept>false</msh15ACKAccept>
           <dateFormat>yyyyMMddHHmmss.SSS</dateFormat>
         </responseGenerationProperties>
-        <responseValidationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseValidationProperties" version="3.4.2">
+        <responseValidationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseValidationProperties" version="3.5.1">
           <successfulACKCode>AA,CA</successfulACKCode>
           <errorACKCode>AE,CE</errorACKCode>
           <rejectedACKCode>AR,CR</rejectedACKCode>
@@ -441,8 +169,8 @@ NjVeOTl8THx8fEZ8fHwyMDA2MTEyMjE1NDczM3w=</inboundTemplate>
           <originalIdMapVariable></originalIdMapVariable>
         </responseValidationProperties>
       </inboundProperties>
-      <outboundProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties" version="3.4.2">
-        <serializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties" version="3.4.2">
+      <outboundProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties" version="3.5.1">
+        <serializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties" version="3.5.1">
           <handleRepetitions>true</handleRepetitions>
           <handleSubcomponents>true</handleSubcomponents>
           <useStrictParser>false</useStrictParser>
@@ -451,16 +179,16 @@ NjVeOTl8THx8fEZ8fHwyMDA2MTEyMjE1NDczM3w=</inboundTemplate>
           <segmentDelimiter>\r</segmentDelimiter>
           <convertLineBreaks>true</convertLineBreaks>
         </serializationProperties>
-        <deserializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties" version="3.4.2">
+        <deserializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties" version="3.5.1">
           <useStrictParser>false</useStrictParser>
           <useStrictValidation>false</useStrictValidation>
           <segmentDelimiter>\r</segmentDelimiter>
         </deserializationProperties>
-        <batchProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2BatchProperties" version="3.4.2">
+        <batchProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2BatchProperties" version="3.5.1">
           <splitType>MSH_Segment</splitType>
           <batchScript></batchScript>
         </batchProperties>
-        <responseGenerationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseGenerationProperties" version="3.4.2">
+        <responseGenerationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseGenerationProperties" version="3.5.1">
           <segmentDelimiter>\r</segmentDelimiter>
           <successfulACKCode>AA</successfulACKCode>
           <successfulACKMessage></successfulACKMessage>
@@ -471,7 +199,7 @@ NjVeOTl8THx8fEZ8fHwyMDA2MTEyMjE1NDczM3w=</inboundTemplate>
           <msh15ACKAccept>false</msh15ACKAccept>
           <dateFormat>yyyyMMddHHmmss.SSS</dateFormat>
         </responseGenerationProperties>
-        <responseValidationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseValidationProperties" version="3.4.2">
+        <responseValidationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseValidationProperties" version="3.5.1">
           <successfulACKCode>AA,CA</successfulACKCode>
           <errorACKCode>AE,CE</errorACKCode>
           <rejectedACKCode>AR,CR</rejectedACKCode>
@@ -481,8 +209,8 @@ NjVeOTl8THx8fEZ8fHwyMDA2MTEyMjE1NDczM3w=</inboundTemplate>
         </responseValidationProperties>
       </outboundProperties>
     </transformer>
-    <filter version="3.4.2">
-      <rules/>
+    <filter version="3.5.1">
+      <elements/>
     </filter>
     <transportName>Channel Reader</transportName>
     <mode>SOURCE</mode>
@@ -490,12 +218,12 @@ NjVeOTl8THx8fEZ8fHwyMDA2MTEyMjE1NDczM3w=</inboundTemplate>
     <waitForPrevious>true</waitForPrevious>
   </sourceConnector>
   <destinationConnectors>
-    <connector version="3.4.2">
+    <connector version="3.5.1">
       <metaDataId>1</metaDataId>
       <name>Destination 1</name>
-      <properties class="com.mirth.connect.connectors.js.JavaScriptDispatcherProperties" version="3.4.2">
+      <properties class="com.mirth.connect.connectors.js.JavaScriptDispatcherProperties" version="3.5.1">
         <pluginProperties/>
-        <destinationConnectorProperties version="3.4.2">
+        <destinationConnectorProperties version="3.5.1">
           <queueEnabled>true</queueEnabled>
           <sendFirst>true</sendFirst>
           <retryIntervalMillis>10000</retryIntervalMillis>
@@ -513,6 +241,7 @@ NjVeOTl8THx8fEZ8fHwyMDA2MTEyMjE1NDczM3w=</inboundTemplate>
             </entry>
           </resourceIds>
           <queueBufferSize>1000</queueBufferSize>
+          <reattachAttachments>true</reattachAttachments>
         </destinationConnectorProperties>
         <script>var ts = java.time.Instant.now().toString();
 var messagePayload = { 
@@ -545,14 +274,14 @@ channel.basicPublish($(&apos;AMQP_EXCHANGE_NAME&apos;),
 	Packages.com.rabbitmq.client.MessageProperties.PERSISTENT_TEXT_PLAIN, 
 	JsonUtil.prettyPrint(JSON.stringify(messagePayload)).getBytes());</script>
       </properties>
-      <transformer version="3.4.2">
-        <steps/>
+      <transformer version="3.5.1">
+        <elements/>
         <inboundTemplate encoding="base64"></inboundTemplate>
         <outboundTemplate encoding="base64"></outboundTemplate>
         <inboundDataType>HL7V2</inboundDataType>
         <outboundDataType>XML</outboundDataType>
-        <inboundProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties" version="3.4.2">
-          <serializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties" version="3.4.2">
+        <inboundProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties" version="3.5.1">
             <handleRepetitions>true</handleRepetitions>
             <handleSubcomponents>true</handleSubcomponents>
             <useStrictParser>true</useStrictParser>
@@ -561,16 +290,16 @@ channel.basicPublish($(&apos;AMQP_EXCHANGE_NAME&apos;),
             <segmentDelimiter>\r</segmentDelimiter>
             <convertLineBreaks>true</convertLineBreaks>
           </serializationProperties>
-          <deserializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties" version="3.4.2">
+          <deserializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties" version="3.5.1">
             <useStrictParser>false</useStrictParser>
             <useStrictValidation>false</useStrictValidation>
             <segmentDelimiter>\r</segmentDelimiter>
           </deserializationProperties>
-          <batchProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2BatchProperties" version="3.4.2">
+          <batchProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2BatchProperties" version="3.5.1">
             <splitType>MSH_Segment</splitType>
             <batchScript></batchScript>
           </batchProperties>
-          <responseGenerationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseGenerationProperties" version="3.4.2">
+          <responseGenerationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseGenerationProperties" version="3.5.1">
             <segmentDelimiter>\r</segmentDelimiter>
             <successfulACKCode>AA</successfulACKCode>
             <successfulACKMessage></successfulACKMessage>
@@ -581,7 +310,7 @@ channel.basicPublish($(&apos;AMQP_EXCHANGE_NAME&apos;),
             <msh15ACKAccept>false</msh15ACKAccept>
             <dateFormat>yyyyMMddHHmmss.SSS</dateFormat>
           </responseGenerationProperties>
-          <responseValidationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseValidationProperties" version="3.4.2">
+          <responseValidationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseValidationProperties" version="3.5.1">
             <successfulACKCode>AA,CA</successfulACKCode>
             <errorACKCode>AE,CE</errorACKCode>
             <rejectedACKCode>AR,CR</rejectedACKCode>
@@ -590,11 +319,11 @@ channel.basicPublish($(&apos;AMQP_EXCHANGE_NAME&apos;),
             <originalIdMapVariable></originalIdMapVariable>
           </responseValidationProperties>
         </inboundProperties>
-        <outboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.4.2">
-          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.4.2">
+        <outboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
             <stripNamespaces>false</stripNamespaces>
           </serializationProperties>
-          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.4.2">
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
             <splitType>Element_Name</splitType>
             <elementName></elementName>
             <level>1</level>
@@ -603,15 +332,15 @@ channel.basicPublish($(&apos;AMQP_EXCHANGE_NAME&apos;),
           </batchProperties>
         </outboundProperties>
       </transformer>
-      <responseTransformer version="3.4.2">
-        <steps/>
+      <responseTransformer version="3.5.1">
+        <elements/>
         <inboundDataType>XML</inboundDataType>
         <outboundDataType>XML</outboundDataType>
-        <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.4.2">
-          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.4.2">
+        <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
             <stripNamespaces>true</stripNamespaces>
           </serializationProperties>
-          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.4.2">
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
             <splitType>Element_Name</splitType>
             <elementName></elementName>
             <level>1</level>
@@ -619,11 +348,11 @@ channel.basicPublish($(&apos;AMQP_EXCHANGE_NAME&apos;),
             <batchScript></batchScript>
           </batchProperties>
         </inboundProperties>
-        <outboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.4.2">
-          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.4.2">
+        <outboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
             <stripNamespaces>true</stripNamespaces>
           </serializationProperties>
-          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.4.2">
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
             <splitType>Element_Name</splitType>
             <elementName></elementName>
             <level>1</level>
@@ -632,8 +361,8 @@ channel.basicPublish($(&apos;AMQP_EXCHANGE_NAME&apos;),
           </batchProperties>
         </outboundProperties>
       </responseTransformer>
-      <filter version="3.4.2">
-        <rules/>
+      <filter version="3.5.1">
+        <elements/>
       </filter>
       <transportName>JavaScript Writer</transportName>
       <mode>DESTINATION</mode>
@@ -652,7 +381,7 @@ return;</deployScript>
   <undeployScript>// This script executes once when the channel is undeployed
 // You only have access to the globalMap and globalChannelMap here to persist data
 return;</undeployScript>
-  <properties version="3.4.2">
+  <properties version="3.5.1">
     <clearGlobalChannelMap>true</clearGlobalChannelMap>
     <messageStorageMode>DEVELOPMENT</messageStorageMode>
     <encryptData>false</encryptData>
@@ -661,7 +390,6 @@ return;</undeployScript>
     <removeAttachmentsOnCompletion>false</removeAttachmentsOnCompletion>
     <initialState>STARTED</initialState>
     <storeAttachments>false</storeAttachments>
-    <tags class="linked-hash-set"/>
     <metaDataColumns>
       <metaDataColumn>
         <name>SOURCE</name>
@@ -674,11 +402,10 @@ return;</undeployScript>
         <mappingName>mirth_type</mappingName>
       </metaDataColumn>
     </metaDataColumns>
-    <attachmentProperties version="3.4.2">
+    <attachmentProperties version="3.5.1">
       <type>None</type>
       <properties/>
     </attachmentProperties>
-    <archiveEnabled>true</archiveEnabled>
     <resourceIds class="linked-hash-map">
       <entry>
         <string>Default Resource</string>
@@ -686,5 +413,17 @@ return;</undeployScript>
       </entry>
     </resourceIds>
   </properties>
-  <codeTemplateLibraries/>
+  <exportData>
+    <metadata>
+      <enabled>true</enabled>
+      <lastModified>
+        <time>1508727171043</time>
+        <timezone>America/Los_Angeles</timezone>
+      </lastModified>
+      <pruningSettings>
+        <pruneMetaDataDays>30</pruneMetaDataDays>
+        <archiveEnabled>true</archiveEnabled>
+      </pruningSettings>
+    </metadata>
+  </exportData>
 </channel>
