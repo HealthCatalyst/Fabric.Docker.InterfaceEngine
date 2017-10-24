@@ -18,7 +18,22 @@ replaceconfig "database.url" "jdbc\:mysql\:\/\/mysqlserver\:$mysqlport/$mirthdb"
 # sed -i "s#^\(database.url\s*=*\).*\$#\1 jdbc\:mysql\:\/\/mysqlserver\:3306/mirthdb#" 
 
 mysqlusername=$MYSQL_USER
-mysqlpassword=$MYSQL_PASSWORD
+mysqlpassword=${MYSQL_PASSWORD:-}
+mysqlpasswordfile=${MYSQL_PASSWORD_FILE:-}
+
+if [[ ! -z "$mysqlpasswordfile" ]]
+then
+    echo "MYSQL_PASSWORD_FILE is set so reading from $mysqlpasswordfile"
+    mysqlpassword=`cat $mysqlpasswordfile`
+fi
+
+if [[ -z "$mysqlpassword" ]]
+then
+    echo "Either MYSQL_PASSWORD_FILE or MYSQL_PASSWORD must be set"
+    exit 1
+fi
+
+
 replaceconfig "database.username" "$mysqlusername" /opt/mirthconnect/conf/mirth.properties
 replaceconfig "database.password" "$mysqlpassword" /opt/mirthconnect/conf/mirth.properties
 
