@@ -24,7 +24,7 @@ mysqlpasswordfile=${MYSQL_PASSWORD_FILE:-}
 if [[ ! -z "$mysqlpasswordfile" ]]
 then
     echo "MYSQL_PASSWORD_FILE is set so reading from $mysqlpasswordfile"
-    mysqlpassword=`cat $mysqlpasswordfile`
+    mysqlpassword=$(cat $mysqlpasswordfile)
 fi
 
 if [[ -z "$mysqlpassword" ]]
@@ -33,14 +33,12 @@ then
     exit 1
 fi
 
-echo "Password:"$mysqlpassword
-
 replaceconfig "database.username" "$mysqlusername" /opt/mirthconnect/conf/mirth.properties
 replaceconfig "database.password" "$mysqlpassword" /opt/mirthconnect/conf/mirth.properties
 
 # sed -i "s#^\(database.username\s*=\).*\$#\1 $mysqlusername#" /opt/mirthconnect/conf/mirth.properties
 # sed -i "s#^\(database.password\s*=\).*\$#\1 $mysqlpassword#" /opt/mirthconnect/conf/mirth.properties
 
-cat /opt/mirthconnect/conf/mirth.properties
+# cat /opt/mirthconnect/conf/mirth.properties
 
 echo "finished updating the config: mirth.properties"
