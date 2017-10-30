@@ -15,11 +15,7 @@ declare -i c=0
 c=0
 protocol="https"
 
-# disable set -e so the script does not break when there is an error with curl
-wait-for-it localhost:8443 -t 60
-
-# echo "sleeping for 60s before setting up channels"
-# sleep 60s;
+wait-for-it localhost:8443 -t 120
 
 echo "setting up channels"
 /opt/mirthconnect_channels/deployrealtimechannel.sh

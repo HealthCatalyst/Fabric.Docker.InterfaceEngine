@@ -70,6 +70,9 @@ cd /opt/mirthconnect_database/
 javac KerberosAuthenticationTest.java
 java -cp ".:/opt/mirthconnect/custom-lib/sqljdbc42.jar" -Djava.security.auth.login.config=/opt/mirthconnect/conf/SQLJDBCDriver.conf -Djava.security.krb5.conf=/etc/krb5.conf KerberosAuthenticationTest
 
-# restart Mirth Connect
-/opt/mirthconnect/mcservice restart
+echo "Done testing database"
 
+# restart Mirth Connect
+sh /opt/mirthconnect/mcservice restart
+
+echo "finished switching to SQL Server"

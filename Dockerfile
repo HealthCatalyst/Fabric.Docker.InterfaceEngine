@@ -62,6 +62,8 @@ RUN dos2unix /opt/mirthconnect/startmirthandrenewcredentials.sh \
 	&& chmod +x /opt/mirthconnect_database/switchtosqlserver.sh \
 	&& dos2unix /opt/mirthconnect_mysql/* \
 	&& chmod +x /opt/mirthconnect_mysql/* \
+	&& dos2unix /opt/mirthconnect_database/* \
+	&& chmod +x /opt/mirthconnect_database/* \
 	&& dos2unix ./docker-entrypoint.sh \
 	&& chmod +x ./docker-entrypoint.sh 
 

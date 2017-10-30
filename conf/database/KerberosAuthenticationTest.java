@@ -2,7 +2,7 @@ import java.sql.*;
 
 public class KerberosAuthenticationTest {
   static final String JDBC_DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-  static final String DB_URL = "jdbc:sqlserver://$Server.$Domain:$Port;DatabaseName=master;integratedSecurity=true;authenticationScheme=JavaKerberos;serverSpn=MSSQLSvc/$Server.$Domain:$Port";
+  static final String DB_URL = "jdbc:sqlserver://$Server.$Domain:$Port;DatabaseName=master;integratedSecurity=true;authenticationScheme=JavaKerberos;serverSpn=MSSQLSvc/$Server.$Domain";
   
   public static void main(String[] args) {
     Connection conn = null;
