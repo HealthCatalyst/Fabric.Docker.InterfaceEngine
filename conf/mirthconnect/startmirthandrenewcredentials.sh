@@ -16,24 +16,7 @@ c=0
 protocol="https"
 
 # disable set -e so the script does not break when there is an error with curl
-set +e
-
 wait-for-it localhost:8443 -t 60
-
-# while [ $c -lt 10 ]; do
-#     echo "curl -X GET $protocol://localhost:8443"
-#     curl -X GET $protocol://localhost:8443 -k
-#     RETVAL=$?
-#     echo "RETVAL:[$RETVAL]"
-#     if [ $RETVAL -eq 0 ]; then 
-#       break 
-#     fi    
-#     c=$c+1
-#     echo "Trying again [$c]"
-#     sleep 1s
-# done
-
-set -e
 
 # echo "sleeping for 60s before setting up channels"
 # sleep 60s;

@@ -6,13 +6,13 @@ LABEL version="1.0"
 ENV MIRTH_CONNECT_VERSION 3.5.1.b194
 
 # Install required packages
+
 RUN yum install -y wget krb5-libs krb5-workstation ntp rsync dos2unix; yum clean all
 
 # Install Java
-# RUN yum -y install java-1.8.0-openjdk; yum clean all
+# RUN yum -y install java-1.8.0-openjdk-devel; yum clean all
 
-RUN wget -O jdk.rpm --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" \
-http://javadl.oracle.com/webapps/download/AutoDL?BundleId=227541_e758a0de34e24606bca991d704f6dcbf \
+RUN wget -O jdk.rpm https://fabricnlpfiles.blob.core.windows.net/java/jdk-8u152-linux-x64.rpm \
 && yum install -y ./jdk.rpm \
 && yum clean all \
 && rm -f jdk.rpm
