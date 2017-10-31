@@ -2,7 +2,7 @@ import java.sql.*;
 
 public class KerberosAuthenticationTest {
   static final String JDBC_DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-  static final String DB_URL = "jdbc:sqlserver://$Server.$Domain:$Port;DatabaseName=master;integratedSecurity=true;authenticationScheme=JavaKerberos;serverSpn=MSSQLSvc/$Server.$Domain";
+  static final String DB_URL = "jdbc:sqlserver://$Server.$Domain:$Port;DatabaseName=$Database;integratedSecurity=true;authenticationScheme=JavaKerberos;serverSpn=MSSQLSvc/$Server.$Domain";
   
   public static void main(String[] args) {
     Connection conn = null;
@@ -18,7 +18,7 @@ public class KerberosAuthenticationTest {
       ResultSet rs = stmt.executeQuery(sql);
       while(rs.next()) {
         String value = rs.getString(1);
-        System.out.println("Authentication Scheme: " + value);
+        System.out.println("Authentication Scheme of current connection: " + value);
       }
       rs.close();
       stmt.close();

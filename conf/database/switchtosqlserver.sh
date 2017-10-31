@@ -45,6 +45,7 @@ sed -i 's/$Database/'"$db_catalog"'/g' /opt/mirthconnect_database/mirth.properti
 sed -i 's/$Server/'"$db_hostname"'/g' /opt/mirthconnect_database/KerberosAuthenticationTest.java
 sed -i 's/$Port/'"$db_port"'/g' /opt/mirthconnect_database/KerberosAuthenticationTest.java
 sed -i 's/$Domain/'"$domain"'/g' /opt/mirthconnect_database/KerberosAuthenticationTest.java
+sed -i 's/$Database/'"$db_catalog"'/g' /opt/mirthconnect_database/KerberosAuthenticationTest.java
 
 # swap Mirth Connect config files
 cp /opt/mirthconnect_database/krb5.conf /etc/krb5.conf
@@ -73,6 +74,6 @@ java -cp ".:/opt/mirthconnect/custom-lib/sqljdbc42.jar" -Djava.security.auth.log
 echo "Done testing database"
 
 # restart Mirth Connect
-sh /opt/mirthconnect/mcservice restart
+# sh /opt/mirthconnect/mcservice restart
 
 echo "finished switching to SQL Server"

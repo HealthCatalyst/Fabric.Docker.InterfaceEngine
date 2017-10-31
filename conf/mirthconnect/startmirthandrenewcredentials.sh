@@ -63,9 +63,10 @@ if [[ ! -z "${ENABLE_KERBEROS:-}" ]]; then
   fi
 fi
 
-echo "finished running script"
 
 /opt/mirthconnect/mcservice stop
+
+echo "finished running script"
 
 
 
