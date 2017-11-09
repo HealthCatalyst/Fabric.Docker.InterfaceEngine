@@ -1,5 +1,6 @@
 # Fabric.Docker.InterfaceEngine
-Docker for interface engine to use for [Fabric.Realtime](https://github.com/HealthCatalyst/Fabric.Realtime).
+
+[Mirth Connect](https://www.mirth.com/) interface engine Docker instance for use with the [Health Catalyst](https://www.healthcatalyst.com) [Fabric.Realtime](https://github.com/HealthCatalyst/Fabric.Realtime) platform.
 
 This image delivers Mirth Connect on Linux and includes configurable scripts to switch Mirth Connect's internal database (Apache Derby) to an external SQL Server with trusted authentication using Microsoft's JDBC Client and Kerberos.
 
