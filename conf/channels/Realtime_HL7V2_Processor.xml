@@ -3,15 +3,15 @@
   <nextMetaDataId>3</nextMetaDataId>
   <name>Realtime_HL7V2_Processor</name>
   <description></description>
-  <revision>6</revision>
+  <revision>8</revision>
   <sourceConnector version="3.5.1">
     <metaDataId>0</metaDataId>
     <name>sourceConnector</name>
     <properties class="com.mirth.connect.connectors.vm.VmReceiverProperties" version="3.5.1">
       <pluginProperties/>
       <sourceConnectorProperties version="3.5.1">
-        <responseVariable>d1</responseVariable>
-        <respondAfterProcessing>true</respondAfterProcessing>
+        <responseVariable>None</responseVariable>
+        <respondAfterProcessing>false</respondAfterProcessing>
         <processBatch>false</processBatch>
         <firstResponse>false</firstResponse>
         <processingThreads>1</processingThreads>
@@ -228,7 +228,7 @@ NjVeOTl8THx8fEZ8fHwyMDA2MTEyMjE1NDczM3w=</inboundTemplate>
           <sendFirst>true</sendFirst>
           <retryIntervalMillis>10000</retryIntervalMillis>
           <regenerateTemplate>false</regenerateTemplate>
-          <retryCount>0</retryCount>
+          <retryCount>3</retryCount>
           <rotate>false</rotate>
           <includeFilterTransformer>false</includeFilterTransformer>
           <threadCount>1</threadCount>
@@ -268,14 +268,14 @@ var connection = factory.newConnection();
 var channel = connection.createChannel();
 channel.exchangeDeclare($(&apos;AMQP_EXCHANGE_NAME&apos;), $(&apos;AMQP_EXCHANGE_TYPE&apos;), true);
 
-var routingKey = $(&apos;Protocol&apos;) + &quot;.&quot; + $(&apos;SendingApplication&apos;) + &quot;.&quot; + $(&apos;MessageType&apos;) + &quot;.&quot; + $(&apos;MessageEvent&apos;) + &quot;.&quot; + $(&apos;Version&apos;).replace(&quot;.&quot;, &quot;_&quot;);
+var routingKey = $(&apos;Protocol&apos;) + &quot;.&quot; + $(&apos;MessageType&apos;) + &quot;.&quot; + $(&apos;MessageEvent&apos;) + &quot;.&quot; + $(&apos;SendingApplication&apos;) + &quot;.&quot; + $(&apos;Version&apos;).replace(&quot;.&quot;, &quot;_&quot;);
 channel.basicPublish($(&apos;AMQP_EXCHANGE_NAME&apos;), 
 	routingKey, 
 	Packages.com.rabbitmq.client.MessageProperties.PERSISTENT_TEXT_PLAIN, 
 	JsonUtil.prettyPrint(JSON.stringify(messagePayload)).getBytes());
-  
-  connection.close();
-  </script>
+
+connection.close();
+</script>
       </properties>
       <transformer version="3.5.1">
         <elements/>
@@ -386,7 +386,7 @@ return;</deployScript>
 return;</undeployScript>
   <properties version="3.5.1">
     <clearGlobalChannelMap>true</clearGlobalChannelMap>
-    <messageStorageMode>DEVELOPMENT</messageStorageMode>
+    <messageStorageMode>PRODUCTION</messageStorageMode>
     <encryptData>false</encryptData>
     <removeContentOnCompletion>false</removeContentOnCompletion>
     <removeOnlyFilteredOnCompletion>false</removeOnlyFilteredOnCompletion>
@@ -420,14 +420,13 @@ return;</undeployScript>
     <metadata>
       <enabled>true</enabled>
       <lastModified>
-        <time>1510072700304</time>
-        <timezone>America/Denver</timezone>
+        <time>1511744615422</time>
+        <timezone>America/Los_Angeles</timezone>
       </lastModified>
       <pruningSettings>
         <pruneMetaDataDays>30</pruneMetaDataDays>
         <archiveEnabled>true</archiveEnabled>
       </pruningSettings>
     </metadata>
-    <channelTags/>
   </exportData>
 </channel>

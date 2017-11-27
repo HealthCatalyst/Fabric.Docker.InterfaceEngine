@@ -3,7 +3,7 @@
   <nextMetaDataId>2</nextMetaDataId>
   <name>TCP_Receiver_Channel</name>
   <description></description>
-  <revision>1</revision>
+  <revision>2</revision>
   <sourceConnector version="3.5.1">
     <metaDataId>0</metaDataId>
     <name>sourceConnector</name>
@@ -360,7 +360,7 @@ return;</deployScript>
 return;</undeployScript>
   <properties version="3.5.1">
     <clearGlobalChannelMap>true</clearGlobalChannelMap>
-    <messageStorageMode>DEVELOPMENT</messageStorageMode>
+    <messageStorageMode>PRODUCTION</messageStorageMode>
     <encryptData>false</encryptData>
     <removeContentOnCompletion>false</removeContentOnCompletion>
     <removeOnlyFilteredOnCompletion>false</removeOnlyFilteredOnCompletion>
@@ -394,7 +394,7 @@ return;</undeployScript>
     <metadata>
       <enabled>true</enabled>
       <lastModified>
-        <time>1508727112824</time>
+        <time>1511745577846</time>
         <timezone>America/Los_Angeles</timezone>
       </lastModified>
       <pruningSettings>
