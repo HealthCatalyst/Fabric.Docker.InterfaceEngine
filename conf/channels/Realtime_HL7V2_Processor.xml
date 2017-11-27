@@ -3,7 +3,7 @@
   <nextMetaDataId>3</nextMetaDataId>
   <name>Realtime_HL7V2_Processor</name>
   <description></description>
-  <revision>5</revision>
+  <revision>6</revision>
   <sourceConnector version="3.5.1">
     <metaDataId>0</metaDataId>
     <name>sourceConnector</name>
@@ -272,7 +272,10 @@ var routingKey = $(&apos;Protocol&apos;) + &quot;.&quot; + $(&apos;SendingApplic
 channel.basicPublish($(&apos;AMQP_EXCHANGE_NAME&apos;), 
 	routingKey, 
 	Packages.com.rabbitmq.client.MessageProperties.PERSISTENT_TEXT_PLAIN, 
-	JsonUtil.prettyPrint(JSON.stringify(messagePayload)).getBytes());</script>
+	JsonUtil.prettyPrint(JSON.stringify(messagePayload)).getBytes());
+  
+  connection.close();
+  </script>
       </properties>
       <transformer version="3.5.1">
         <elements/>
