@@ -11,23 +11,21 @@ This image also contains a simple HL7 V2 channel reader that parses common HL7 h
 As this image is intended for deployment as part of the Fabric.Realtime platform, please refer to the set of instructions at https://github.com/HealthCatalyst/Fabric.Realtime.
 
 # Switch Mirth Connect's Internal Database to an External SQL Server
+To use Microsoft SQL Server instead of the embedded MySql, set the following environment variables:
+SQLSERVER_USER
+SQLSERVER_PASSWORD
+SQLSERVER_DOMAIN
+SQLSERVER_AD_URL
+SQLSERVER_SERVER
+SQLSERVER_DATABASE
 
-To switch Mirth Connect's internal database to an external SQL Server using integrated security, the interface engine must be running on a docker host whose time is in sync with an Active Directory domain controller. In addition, the db_catalog must already be created on the db_host. And the user must have permissions to read, write, and administer ddl on that db_catalog. To switch, execute the following script with the seven required parameters:
-
-```
-$ docker exec [container_id | container_name] /opt/mirthconnect_database/switchtosqlserver.sh $user(lowercase) $password $fqdn $kdc_hostname $db_hostname $db_port $db_catalog
-```
-
-If Kerberos authentication is successful, the output will include the following three lines:
-
-```
-Connecting to database...
-Authentication Scheme: KERBEROS
-Disconnected from database.
-```
-
-Finally, the script will restart Mirth Connect. The external database will then show Mirth Connect's internal tables (i.e dbo.CHANNEL).
-
+or for a more security, pass them as secrets:
+SQLSERVER_USER_FILE
+SQLSERVER_PASSWORD_FILE
+SQLSERVER_DOMAIN_FILE
+SQLSERVER_AD_URL_FILE
+SQLSERVER_SERVER_FILE
+SQLSERVER_DATABASE_FILE
 
 # HL7 V2 Channel Reader with AMQP-enabled Message Destination
 
