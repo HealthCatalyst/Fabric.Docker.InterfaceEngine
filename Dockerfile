@@ -52,6 +52,8 @@ ADD conf/database/* /opt/mirthconnect_database/
 
 ADD conf/mysql/* /opt/mirthconnect_mysql/
 
+ADD conf/mirthconnect/mirth.properties /opt/mirthconnect/conf/mirth.properties
+
 ADD docker-entrypoint.sh ./docker-entrypoint.sh
 
 RUN dos2unix /opt/mirthconnect/startmirthandrenewcredentials.sh \
