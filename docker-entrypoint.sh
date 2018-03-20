@@ -2,6 +2,7 @@
 
 set -eu
 
+echo "Version 2018.03.20.01"
 # set -x
 
 if [[ ! -z "${SQLSERVER_USER:-}" ]] || [[ ! -z "${SQLSERVER_USER_FILE:-}" ]]
@@ -80,7 +81,28 @@ else
     fi
 fi
 
+if [[ ! -z "${HTTP_PORT:-}" ]]; then
+    echo "HTTP_PORT is set so switching Mirth to use $HTTP_PORT"
+
+    replaceconfig "http.port" "$HTTP_PORT" /opt/mirthconnect/conf/mirth.properties
+fi
+
+if [[ ! -z "${HTTPS_PORT:-}" ]]; then
+    echo "HTTPS_PORT is set so switching Mirth to use $HTTPS_PORT"
+
+    replaceconfig "https.port" "$HTTPS_PORT" /opt/mirthconnect/conf/mirth.properties
+fi
+
+if [[ ! -z "${HTTP_CONTEXTPATH:-}" ]]; then
+    echo "HTTP_CONTEXTPATH is set so switching Mirth to use $HTTP_CONTEXTPATH"
+
+    replaceconfig "http.contextpath" "$HTTP_CONTEXTPATH" /opt/mirthconnect/conf/mirth.properties
+fi
+
 /opt/mirthconnect/startmirthandrenewcredentials.sh
+
+mkdir -p /opt/healthcatalyst
+touch /opt/healthcatalyst/ready
 
 echo "starting Mirth"
 

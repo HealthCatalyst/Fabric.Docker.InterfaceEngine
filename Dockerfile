@@ -56,17 +56,17 @@ ADD conf/mirthconnect/mirth.properties /opt/mirthconnect/conf/mirth.properties
 
 ADD docker-entrypoint.sh ./docker-entrypoint.sh
 
-RUN dos2unix /opt/mirthconnect/startmirthandrenewcredentials.sh \
+RUN dos2unix /opt/mirthconnect/startmirthandrenewcredentials.sh &>/dev/null \
     && chmod +x /opt/mirthconnect/startmirthandrenewcredentials.sh \
-    && dos2unix /opt/mirthconnect_channels/deployrealtimechannel.sh \
+    && dos2unix /opt/mirthconnect_channels/deployrealtimechannel.sh &>/dev/null \
     && chmod +x /opt/mirthconnect_channels/deployrealtimechannel.sh \
-	&& dos2unix /opt/mirthconnect_database/switchtosqlserver.sh \
+	&& dos2unix /opt/mirthconnect_database/switchtosqlserver.sh &>/dev/null \
 	&& chmod +x /opt/mirthconnect_database/switchtosqlserver.sh \
-	&& dos2unix /opt/mirthconnect_mysql/* \
+	&& dos2unix /opt/mirthconnect_mysql/* &>/dev/null \
 	&& chmod +x /opt/mirthconnect_mysql/* \
-	&& dos2unix /opt/mirthconnect_database/* \
+	&& dos2unix /opt/mirthconnect_database/* &>/dev/null \
 	&& chmod +x /opt/mirthconnect_database/* \
-	&& dos2unix ./docker-entrypoint.sh \
+	&& dos2unix ./docker-entrypoint.sh &>/dev/null \
 	&& chmod +x ./docker-entrypoint.sh 
 
 EXPOSE 8080 8443 6661

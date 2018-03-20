@@ -15,7 +15,16 @@ declare -i c=0
 c=0
 protocol="https"
 
-wait-for-it localhost:8443 -t 120
+url="localhost"
+
+if [[ ! -z "${HTTPS_PORT:-}" ]]; then
+    url="${url}:${HTTPS_PORT}"
+else
+    url="${url}:8443"
+fi
+
+echo "waiting for $url"
+wait-for-it $url -t 240
 
 echo "setting up channels"
 /opt/mirthconnect_channels/deployrealtimechannel.sh
