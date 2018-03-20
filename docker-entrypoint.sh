@@ -99,6 +99,12 @@ if [[ ! -z "${HTTP_CONTEXTPATH:-}" ]]; then
     replaceconfig "http.contextpath" "$HTTP_CONTEXTPATH" /opt/mirthconnect/conf/mirth.properties
 fi
 
+if [[ ! -z "${SERVER_HOSTNAME:-}" ]]; then
+    url="http://${SERVER_HOSTNAME}:${HTTP_PORT}${HTTP_CONTEXTPATH}"
+    echo "SERVER_HOSTNAME is set so switching Mirth to use url: $url"
+    replaceconfig "server.url" "$url" /opt/mirthconnect/conf/mirth.properties
+fi
+
 /opt/mirthconnect/startmirthandrenewcredentials.sh
 
 mkdir -p /opt/healthcatalyst
