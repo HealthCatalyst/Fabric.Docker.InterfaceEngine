@@ -2,7 +2,7 @@
 
 set -eu
 
-echo "Version 2018.03.20.01"
+echo "Version 2018.04.10.01"
 # set -x
 
 if [[ ! -z "${SQLSERVER_USER:-}" ]] || [[ ! -z "${SQLSERVER_USER_FILE:-}" ]]
@@ -105,11 +105,15 @@ if [[ ! -z "${SERVER_HOSTNAME:-}" ]]; then
     replaceconfig "server.url" "$url" /opt/mirthconnect/conf/mirth.properties
 fi
 
+echo "--- mirth.properties ---"
+cat /opt/mirthconnect/conf/mirth.properties
+echo "--------------------------"
+
 /opt/mirthconnect/startmirthandrenewcredentials.sh
 
 mkdir -p /opt/healthcatalyst
 touch /opt/healthcatalyst/ready
 
-echo "starting Mirth"
+echo "starting Mirth for real"
 
 exec "$@"
