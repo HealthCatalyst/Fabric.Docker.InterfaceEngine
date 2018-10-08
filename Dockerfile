@@ -71,7 +71,7 @@ RUN dos2unix /opt/mirthconnect/startmirthandrenewcredentials.sh &>/dev/null \
 
 EXPOSE 8080 8443 6661
 
-# Start Mirth-Connect as a service
 ENTRYPOINT [ "./docker-entrypoint.sh" ]
 
+# Start Mirth-Connect as a service
 CMD ["/opt/mirthconnect/mcservice", "run"]
