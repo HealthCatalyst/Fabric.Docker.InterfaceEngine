@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "starting mirth"
+echo "starting startmirthandrenewcredentials.sh"
 
 /opt/mirthconnect/mcservice start
 
@@ -75,7 +75,4 @@ fi
 
 /opt/mirthconnect/mcservice stop
 
-echo "finished running script"
-
-
-
+echo "finished running startmirthandrenewcredentials.sh"
