@@ -2,7 +2,7 @@
 
 set -eu
 
-echo "Version 2018.10.30.01"
+echo "Version 2018.10.31.01"
 # set -x
 
 if [[ ! -z "${SQLSERVER_USER:-}" ]] || [[ ! -z "${SQLSERVER_USER_FILE:-}" ]]

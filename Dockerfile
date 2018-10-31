@@ -53,6 +53,7 @@ ADD conf/database/* /opt/mirthconnect_database/
 ADD conf/mysql/* /opt/mirthconnect_mysql/
 
 ADD conf/mirthconnect/mirth.properties /opt/mirthconnect/conf/mirth.properties
+ADD conf/mirthconnect/log4j.properties /opt/mirthconnect/conf/log4j.properties
 
 ADD docker-entrypoint.sh ./docker-entrypoint.sh
 
@@ -67,7 +68,7 @@ RUN dos2unix /opt/mirthconnect/startmirthandrenewcredentials.sh &>/dev/null \
 	&& dos2unix /opt/mirthconnect_database/* &>/dev/null \
 	&& chmod +x /opt/mirthconnect_database/* \
 	&& dos2unix ./docker-entrypoint.sh &>/dev/null \
-	&& chmod +x ./docker-entrypoint.sh 
+	&& chmod +x ./docker-entrypoint.sh
 
 EXPOSE 8080 8443 6661
 
