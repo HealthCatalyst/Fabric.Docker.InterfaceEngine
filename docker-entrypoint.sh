@@ -5,6 +5,9 @@ set -eu
 echo "Version 2018.10.31.01"
 # set -x
 
+echo "Running setenv.sh"
+./setenv.sh
+
 if [[ ! -z "${SQLSERVER_USER:-}" ]] || [[ ! -z "${SQLSERVER_USER_FILE:-}" ]]
 then
 

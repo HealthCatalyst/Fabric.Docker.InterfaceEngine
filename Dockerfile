@@ -54,6 +54,9 @@ ADD conf/mysql/* /opt/mirthconnect_mysql/
 
 ADD conf/mirthconnect/mirth.properties /opt/mirthconnect/conf/mirth.properties
 ADD conf/mirthconnect/log4j.properties /opt/mirthconnect/conf/log4j.properties
+ADD conf/mirthconnect/log4j.properties /opt/mirthconnect/conf/jetty-logging.properties
+
+ADD conf/setenv.sh ./setenv.sh
 
 ADD docker-entrypoint.sh ./docker-entrypoint.sh
 
@@ -67,6 +70,8 @@ RUN dos2unix /opt/mirthconnect/startmirthandrenewcredentials.sh &>/dev/null \
 	&& chmod +x /opt/mirthconnect_mysql/* \
 	&& dos2unix /opt/mirthconnect_database/* &>/dev/null \
 	&& chmod +x /opt/mirthconnect_database/* \
+	&& dos2unix ./setenv.sh &>/dev/null \
+	&& chmod +x ./setenv.sh \
 	&& dos2unix ./docker-entrypoint.sh &>/dev/null \
 	&& chmod +x ./docker-entrypoint.sh
 
