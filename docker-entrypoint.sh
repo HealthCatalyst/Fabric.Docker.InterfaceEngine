@@ -2,7 +2,7 @@
 
 set -eu
 
-echo "Version 2018.10.31.01"
+echo "Version 2018.10.31.02"
 # set -x
 
 echo "Running setenv.sh"
