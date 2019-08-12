@@ -3,7 +3,7 @@
   <nextMetaDataId>3</nextMetaDataId>
   <name>Realtime_HL7V2_Processor</name>
   <description></description>
-  <revision>8</revision>
+  <revision>2</revision>
   <sourceConnector version="3.5.1">
     <metaDataId>0</metaDataId>
     <name>sourceConnector</name>
@@ -287,7 +287,7 @@ connection.close();
           <serializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties" version="3.5.1">
             <handleRepetitions>true</handleRepetitions>
             <handleSubcomponents>true</handleSubcomponents>
-            <useStrictParser>true</useStrictParser>
+            <useStrictParser>false</useStrictParser>
             <useStrictValidation>false</useStrictValidation>
             <stripNamespaces>true</stripNamespaces>
             <segmentDelimiter>\r</segmentDelimiter>
@@ -420,7 +420,7 @@ return;</undeployScript>
     <metadata>
       <enabled>true</enabled>
       <lastModified>
-        <time>1511744615422</time>
+        <time>1565205272835</time>
         <timezone>America/Los_Angeles</timezone>
       </lastModified>
       <pruningSettings>
