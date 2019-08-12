@@ -1,7 +1,7 @@
 FROM healthcatalyst/fabric.baseos:latest
 
 LABEL maintainer="Health Catalyst"
-LABEL version="1.0"
+LABEL version="2.0"
 
 ENV MIRTH_CONNECT_VERSION 3.5.1.b194
 
